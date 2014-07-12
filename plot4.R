@@ -9,6 +9,12 @@
 # 2. Unzipped the file 
 # 3. Saved the file to current directory as "household_power_consumption.txt"
 
+# Infrastructure:
+# - R version 3.1.0 (2014-04-10)
+# - RStudio Version 0.98.507 
+# - Linux operating system (Ubuntu 12.04 LTS)
+# - Memory 2.0 GB
+
 ########### Load file to a dataframe ########### 
 dat <- read.table(
     "./household_power_consumption.txt", 
@@ -31,7 +37,7 @@ dat <- dat[dat$Date>=startDate & dat$Date<=endDate,]
 
 
 png("./plot4.png")
-
+#the default dimensions already are the required ones (width = 480, height = 480)
 
 
 par(mfcol=c(2,2))
@@ -77,7 +83,7 @@ plot(dat$Time,
 plot(dat$Time, 
      dat$Global_reactive_power,
      xlab="datetime",
-     ylab="Global Reactive Power", 
+     ylab="Global_reactive_power", 
      type="l"
 )
 
