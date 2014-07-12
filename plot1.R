@@ -7,8 +7,7 @@
 # Initial Steps:
 # 1. Downloaded file from: #https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip
 # 2. Unzipped the file 
-# 3. Save the file to current directory as "household_power_consumption.txt"
-#    (This file is included in the repo for reproducibility purposes)
+# 3. Saved the file to current directory as "household_power_consumption.txt"
 
 ########### Load file to a dataframe ########### 
 dat <- read.table(
