@@ -1,0 +1,88 @@
+######################################################################################################
+# Exploratory Data Analysis Class
+# Project #1
+# Plot #4
+######################################################################################################
+
+# Initial Steps:
+# 1. Downloaded file from: #https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip
+# 2. Unzipped the file 
+# 3. Save the file to current directory as "household_power_consumption.txt"
+#    (This file is included in the repo for reproducibility purposes)
+
+########### Load file to a dataframe ########### 
+dat <- read.table(
+    "./household_power_consumption.txt", 
+    header = TRUE, 
+    sep = ";",
+    na.strings = c("NA","?")
+)
+
+#Format dates and times
+dat$Time <- strptime(paste(dat$Date,dat$Time),"%d/%m/%Y %H:%M:%S")
+dat$Date <- as.Date(dat$Date, format="%d/%m/%Y")
+
+#Keep only desired records
+startDate <- as.Date("2007-02-01")
+endDate   <- as.Date("2007-02-02")
+dat <- dat[dat$Date>=startDate & dat$Date<=endDate,]
+
+
+########### Plot ########### 
+
+
+png("./plot4.png")
+
+
+
+par(mfcol=c(2,2))
+
+plot(dat$Time, 
+     dat$Global_active_power,
+     xlab="",
+     ylab="Global Active Power", 
+     type="l"
+)
+
+plot(dat$Time, 
+     dat$Sub_metering_1,
+     xlab="",
+     ylab="Energy sub metering", 
+     type="l",
+     col="black"
+)
+
+lines(dat$Time, 
+      dat$Sub_metering_2,
+      col="red"
+)
+
+lines(dat$Time, 
+      dat$Sub_metering_3,
+      col="blue"
+)
+
+legend("topright",
+       c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),
+       col=c("black","red","blue"),
+       lty=1
+)
+
+plot(dat$Time, 
+     dat$Voltage,
+     xlab="datetime",
+     ylab="Voltage", 
+     type="l"
+)
+
+plot(dat$Time, 
+     dat$Global_reactive_power,
+     xlab="datetime",
+     ylab="Global Reactive Power", 
+     type="l"
+)
+
+
+
+dev.off()
+
